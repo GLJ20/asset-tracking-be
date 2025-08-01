@@ -3,8 +3,9 @@ const logger = require('morgan')
 const cors = require('cors')
 
 const AuthRouter = require('./routes/AuthRouter')
-const ProdRouter = require('./routes/ProdRouter')
-const CartRouter = require('./routes/CartRouter')
+const AssetRouter = require('./routes/AssetRouter')
+
+
 
 const PORT = process.env.PORT || 3001
 
@@ -18,8 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/auth', AuthRouter)
-app.use('/products', ProdRouter)
-app.use('/carts', CartRouter)
+app.use('/assets', AssetRouter)
 
 app.use('/', (req, res) => {
   res.send(`Connected!`)

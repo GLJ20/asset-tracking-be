@@ -1,4 +1,6 @@
+const mongoose = require('mongoose')
 const { Schema } = require('mongoose')
+const maintenanceLogSchema = require('./maintenanceLogSchema')
 
 const assetSchema = new Schema(
     {
@@ -73,9 +75,15 @@ const assetSchema = new Schema(
             default: []
         },
         assignedTo: {
-            type: mongoose.Schema.Types.ObjectId, 
+            type: mongoose.Types.ObjectId, 
             ref: 'User', 
             required: true
-        },                
+        },      
+        maintenanceLogs: {
+            type: [maintenanceLogSchema],
+            default: []
+        }          
     }, { timestamps: true}
 )
+
+module.exports = assetSchema
