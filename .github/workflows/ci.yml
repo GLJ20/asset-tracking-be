@@ -1,8 +1,8 @@
-name: Test Only
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ dev, main ]
   pull_request:
     branches: [ main ]
 
@@ -25,5 +25,26 @@ jobs:
     - name: Run tests
       run: npm test
     
-    - name: Success message
-      run: echo "✅ All tests passed! Workflow is working!"
+    - name: Tests passed
+      run: echo "✅ All tests passed!"
+
+#   deploy:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+    
+#     - name: Deploy to Render
+#       run: |
+#         echo "🚀 Deploying to Render..."
+#         echo "Branch: ${{ github.ref }}"
+#         echo "Commit: ${{ github.sha }}"
+#         # Render auto-deploys when you push to main
+#         # Or you can trigger a deploy hook here
+#         curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}" || echo "No deploy hook configured yet"
+    
+#     - name: Deployment complete
+#       run: echo "✅ Deployment triggered successfully!"
