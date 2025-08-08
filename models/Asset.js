@@ -6,7 +6,7 @@ const assetSchema = new Schema(
     {
         companyDeviceId: {
             type: String,
-            require: true,
+            required: true,
             trim: true
         },
         name: {
