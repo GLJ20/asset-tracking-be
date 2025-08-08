@@ -4,7 +4,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "testMatch": ["**/__tests__/**/*.js", "**/?(*.)+(spec|tests).js"],
+    "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"]
   },
   "keywords": [],
   "author": "",
@@ -19,5 +27,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.5",
     "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "jest": "^30.0.5"
   }
 }
