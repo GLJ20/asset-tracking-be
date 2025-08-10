@@ -20,6 +20,7 @@ const GetAssets = async (req, res) => {
 
 const GetAssetByid = async (req, res) => {
     try {
+
         const userId = res.locals.payload.id
         const userRole = res.locals.payload.role 
 
@@ -29,7 +30,7 @@ const GetAssetByid = async (req, res) => {
             return res.status(404).send({msg: 'Asset not found!!'})
         }
 
-        if(userRole === 'Admin' || asset.assignedTo.toString() === userId){
+        if(userRole === 'Admin' || asset.assignedTo._id.toString() === userId){
             res.status(200).send(asset)
         } else {
             res.status(403).send({status: 'Error', msg: 'Access denied'})
