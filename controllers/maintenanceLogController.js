@@ -1,4 +1,3 @@
-const { log } = require('console')
 const { Asset } = require('../models')
 
 const GetAssetMaintenanceLogs = async (req, res) => {
@@ -9,7 +8,11 @@ const GetAssetMaintenanceLogs = async (req, res) => {
             return res.status(404).send({status: 'Error', msg: "No Asset"})
         }
 
-        res.status(200).send(asset.maintenanceLogs)
+        const maintenanceLogs = asset.maintenanceLogs
+
+        maintenanceLogs.sort((a,b) => new Date(b.maintenanceDate) - new Date(a.maintenanceDate))
+
+        res.status(200).send(maintenanceLogs)
     } catch (error) {
         res.status(500).send({ status: 'Error', msg: 'No logs' })
     }

@@ -12,7 +12,7 @@ const Register = async (req, res) => {
         if(existingUser){
             return res.status(400).send('A user with that username has already been registered!')
         } else{
-            const user = await User.create({name, passwordDigest, username, department, role})
+            const user = await User.create({name, passwordDigest, username, department, role: 'Employee'})
 
             res.status(200).send(user)
         }
@@ -40,8 +40,9 @@ const Login = async (req, res) => {
     if (matched) {
       let payload = {
         id: user.id,
-        email: user.email,
-        name: user.name
+        username: user.username,
+        name: user.name,
+        role: user.role
       }
       // Creates our JWT and packages it with our payload to send as a response
       let token = middleware.createToken(payload)
