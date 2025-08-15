@@ -1,4 +1,3 @@
-const { log } = require('console')
 const { Asset } = require('../models')
 
 const GetAssetMaintenanceLogs = async (req, res) => {
