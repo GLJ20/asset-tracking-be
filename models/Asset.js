@@ -17,11 +17,7 @@ const assetSchema = new Schema(
         type: {
             type: String,
             required: true,
-            enum: [
-                'Laptop', 'Monitor', 'Desktop', 'Tablet', 'Smartphone', 
-                '3D Printer', 'Milling Machine', 'Vacuum Former', 'Furnace', 'Scanner', 
-                'Other' 
-            ]
+            enum: ['Computer', 'Lab Device', 'Printer', 'Monitor', 'Phone', 'Refrigerator', 'Other']
         },
         brand: {
             type: String,
@@ -46,8 +42,8 @@ const assetSchema = new Schema(
         status: {
             type: String,
             required: [true, 'Status is required'],
-            enum: ['In Use', 'Available', 'In Repair', 'Retired', 'Lost'],
-            default: 'In Use'
+            enum: ['Active', 'Broken', 'Retired', 'Under Maintenance'],
+            default: 'Active'
         },
         location: {
             type: String,
